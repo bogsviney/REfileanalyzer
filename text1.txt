@@ -1,0 +1,4 @@
+An Array is an essential and most used data structure in Java.
+It is one of the most used data structure by programmers due to its efficient and productive nature!
+The Array is a collection of similar data type elements?
+It uses a contiguous memory location to store the elements.
