@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -74,9 +75,22 @@ class FileAnalyzerTest {
     void tetsSearchSentenceWithWord() throws IOException {
         String text = fileAnalyzer.textFromFileToString("text1.txt");
         String word = "Java";
-        List <String> expected = new ArrayList<>();
+        List<String> expected = new ArrayList<>();
         expected.add("An Array is an essential and most used data structure in Java.");
-        List<String> actual = fileAnalyzer.searchSentenceWithWord(word,text);
+        List<String> actual = fileAnalyzer.searchSentenceWithWord(word, text);
+        assertEquals(expected,actual);
     }
 
+    @Test
+    @DisplayName("TEST: EXCEPTION IF NO SUCH WORD IN TEXT")
+    void testThrowsExceptionIfNoSuchWordInText() throws IOException {
+        String text = fileAnalyzer.textFromFileToString("text1.txt");
+        String word = "MOSSAD IS WATCHING YOU";
+        Throwable thrown = assertThrows(
+                Throwable.class,
+                () ->        fileAnalyzer.searchSentenceWithWord(word, text),
+                "There is no such word in this text!"
+        );
+        assertEquals("There is no such word in this text!", thrown.getMessage());
+    }
 }

@@ -50,7 +50,7 @@ public class FileAnalyzer {
             if (sentence.contains(word)) {
                 result.add(sentence);
             }else{
-                throw new NoSuchElementException("There is no word " + word + " in this text!");
+                throw new IllegalArgumentException("There is no such word in this text!");
             }
             break;
         }
